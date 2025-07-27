@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Skin Assessment Results{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 rounded">
+        <h2 class="text-center text-primary mb-4">Skin Assessment Results</h2>
+
+        <div class="mb-4">
+            <h4 class="text-success">Recommended Products:</h4>
+            <div class="row">
+                {% for product in results['products'] %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <img src="{{ url_for('static', filename='img/product/' + product['image']) }}" class="card-img-top" alt="{{ product['name'] }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product['name'] }}</h5>
+                            <p class="card-text">{{ product['description'] }}</p>
+                            <p class="text-muted"><strong>Brand:</strong> {{ product['brand'] }}</p>
+                            <p class="text-primary"><strong>Price:</strong> {{ product['price'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="p-3 bg-light border rounded">
+            <h4 class="text-danger">Suggested Remedy:</h4>
+            <p class="mb-0">{{ results['remedy'] }}</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        max-width: 800px;
+        margin: auto;
+    }
+    .card img {
+        max-height: 200px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}

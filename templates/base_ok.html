@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiant Skin Solution</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<style>
+    .floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.floating-buttons .btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.floating-buttons .btn:hover {
+    transform: scale(1.1);
+}
+
+/* WhatsApp button with updated color */
+.whatsapp-btn {
+    background-color: #25D366; /* Green color used for WhatsApp */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+        .chatbot-btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+</style>
+<body>
+
+    <!-- Header Section -->
+    {% include 'header.html' %}
+
+    <!-- Main Content -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Copyright © 2024 <span>Radiant Skin Consultant</span>. All rights reserved.</p>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+       <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <!-- Chatbot Button -->
+    <button class="btn chatbot-btn" onclick="toggleChatbot()">
+        <i class="fas fa-robot"></i>
+    </button>
+    <!-- WhatsApp Button -->
+    <button class="btn whatsapp-btn" onclick="window.open('https://wa.me/1234567890?text=Hello%20Doctor%2C%20I%20need%20help!', '_blank')">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+</div>
+
+
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            Chatbot
+            <span class="close-btn" onclick="closeChatbot()">&times;</span>
+        </div>
+        <div class="chatbot-body" id="chatbotBody">
+            <div class="chatbot-message bot">Hi! How can I assist you today?</div>
+        </div>
+        <div class="chatbot-footer">
+            <button onclick="handleChoice('skincare')">Skincare</button>
+            <button onclick="handleChoice('contact')">Contact Us</button>
+            <button onclick="handleChoice('product')">Product</button>
+            <button onclick="handleChoice('doctor')">Doctor Name</button>
+            <button onclick="handleChoice('about')">About Us</button>
+            <button onclick="handleChoice('assessment')">Assessment Link</button>
+        </div>
+    </div>
+
+   <script>
+    // Function to toggle the visibility of the chatbot window
+    function toggleChatbot() {
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        chatbotWindow.style.display = chatbotWindow.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Function to close the chatbot window
+    function closeChatbot() {
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        chatbotWindow.style.display = 'none';
+    }
+
+    // Function to handle the user's choice and display a response
+    function handleChoice(choice) {
+        const chatBody = document.getElementById('chatbotBody');
+
+        // Create and append the user's message
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('chatbot-message', 'user');
+        userMessage.textContent = choice;
+        chatBody.appendChild(userMessage);
+
+        let response = '';
+
+        // Provide responses based on the user's choice
+        switch(choice) {
+            case 'skincare':
+                response = "Skincare involves cleansing, moisturizing, and using sunscreen daily. It's essential for maintaining healthy skin.";
+                break;
+            case 'contact':
+                response = "You can contact us through the Contact Us page. We are available 24/7 to assist you.";
+                break;
+            case 'product':
+                response = "We offer a range of skincare products. Please visit our Products page for more details.";
+                break;
+            case 'doctor':
+                response = "Dr. John Doe is our expert dermatologist. He is highly skilled in skincare and treatment.";
+                break;
+            case 'about':
+                response = "We are dedicated to providing personalized skincare solutions. Our team of experts offers consultation services.";
+                break;
+            case 'assessment':
+                response = "You can take the skincare assessment by clicking [here](#). It helps us understand your skin type and needs.";
+                break;
+            default:
+                response = "I'm sorry, I couldn't understand that. Please select one of the options.";
+                break;
+        }
+
+        // Create and append the bot's response
+        const botMessage = document.createElement('div');
+        botMessage.classList.add('chatbot-message', 'bot');
+        botMessage.textContent = response;
+        chatBody.appendChild(botMessage);
+
+        // Scroll to the bottom of the chat
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Get the chatbot window and buttons
+    const chatbotWindow = document.querySelector('.chatbot-window');
+    const chatbotBtn = document.querySelector('.chatbot-btn');
+    const closeBtn = document.querySelector('.chatbot-header .close-btn');
+
+    // When the chatbot button is clicked, toggle the visibility of the chatbot window
+    chatbotBtn.addEventListener('click', () => {
+        chatbotWindow.style.display = 'flex'; // Show the chatbot window
+    });
+
+    // When the close button is clicked, hide the chatbot window
+    closeBtn.addEventListener('click', () => {
+        chatbotWindow.style.display = 'none'; // Hide the chatbot window
+    });
+
+    // Optionally, ensure that the chatbot window remains closed on page refresh
+    window.onload = () => {
+        chatbotWindow.style.display = 'none'; // Ensure it's closed on page load
+    };
+</script>
+
+</body>
+</html>

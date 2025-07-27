@@ -1,0 +1,50 @@
+
+<div class="header">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="50">
+    <ul class="nav-bar">
+        <li><a href="{{ url_for('dashboard') }}" class="nav-link">Home</a></li>
+        <li><a href="{{ url_for('assessment') }}" class="nav-link">Assessment</a></li>
+        <li><a href="{{ url_for('reviews') }}" class="nav-link">Review</a></li>
+        <li><a href="{{ url_for('product') }}" class="nav-link">Product</a></li>
+        <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+    </ul>
+</div>
+
+<style>
+    .header {
+        background-color: #008080;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .header img {
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .nav-bar {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-bar li {
+        margin-right: 20px;
+    }
+
+    .nav-bar a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .nav-bar a:hover {
+        background-color: #006666;
+        border-radius: 5px;
+    }
+</style>

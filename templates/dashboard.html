@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+        <!-- Hero Section: Welcome message -->
+<div class="container mt-5">
+        <div class="row mb-8">
+            <div class="col-md-12">
+                <h2>Welcome, {{ username }}!</h2>
+                <p>Take charge of your skincare routine with customized assessments and tips designed to help you achieve your skincare goals. Whether you're looking for clearer skin, anti-aging solutions, or personalized care, we’re here to help you every step of the way!</p>
+            </div>
+        </div>
+
+              <!-- General Information & Product Recommendations Carousel -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h4 class="text-center">Explore Our Services & Products</h4>
+                <div id="productInfoCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- First Carousel Item -->
+                        <div class="carousel-item active">
+                            <img src="{{ url_for('static', filename='img/back1.jpeg') }}" class="d-block w-100" alt="Product 1">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Personalized Skincare Plans</h5>
+                                <p>We offer tailored skincare plans based on your unique skin type and needs. Achieve healthy and glowing skin with the right products!</p>
+                            </div>
+                        </div>
+                        <!-- Second Carousel Item -->
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='img/img1.png') }}" class="d-block w-100" alt="Product 2">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Expert Consultations</h5>
+                                <p>Get a consultation with our expert skin doctors to receive professional advice on skincare treatments, products, and routines.</p>
+                            </div>
+                        </div>
+                        <!-- Third Carousel Item -->
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='img/back3.jpeg') }}" class="d-block w-100" alt="Product 3">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Anti-Aging Solutions</h5>
+                                <p>We provide a range of anti-aging skincare products designed to reduce fine lines and wrinkles while rejuvenating your skin.</p>
+                            </div>
+                        </div>
+                        <!-- Fourth Carousel Item -->
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='img/back4.jpeg') }}" class="d-block w-100" alt="Product 4">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Acne Treatment Solutions</h5>
+                                <p>Struggling with acne? We offer customized acne treatment products to help you achieve clearer, healthier skin.</p>
+                            </div>
+                        </div>
+                    </div>
+<!--                     &lt;!&ndash; Fifth Carousel Item &ndash;&gt;-->
+<!--                    <div class="carousel-item">-->
+<!--                        <img src="{{ url_for('static', filename='img/back5.jpeg') }}" class="d-block w-100" alt="Daily Skincare Routine">-->
+<!--                        <div class="carousel-caption d-none d-md-block">-->
+<!--                            <h5>Daily Skincare Routine</h5>-->
+<!--                            <p>Discover the perfect daily skincare routine to keep your skin hydrated, glowing, and protected from pollutants.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash; Sixth Carousel Item &ndash;&gt;-->
+<!--                    <div class="carousel-item">-->
+<!--                        <img src="{{ url_for('static', filename='img/back7.jpeg') }}" class="d-block w-100" alt="Skin Care Tips">-->
+<!--                        <div class="carousel-caption d-none d-md-block">-->
+<!--                            <h5>Essential Skin Care Tips</h5>-->
+<!--                            <p>Learn essential skin care tips, including cleansing, moisturizing, and sun protection for healthy and radiant skin.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productInfoCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productInfoCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    <!-- Blog Section -->
+  <div class="row mb-8">
+    <div class="col-md-12 text-center">
+        <h2>Latest Skincare Tips</h2>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="blog-post">
+                    <h5>How to Manage Oily Skin</h5>
+                    <p>Find out the best skincare routine to tackle oily skin and maintain balance...</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="blog-post">
+                    <h5>Anti-Aging Tips You Should Know</h5>
+                    <p>Get to know the most effective skincare tips and products for fighting wrinkles...</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="blog-post">
+                    <h5>Understanding Sensitive Skin</h5>
+                    <p>Learn how to create a safe skincare routine that works for your sensitive skin...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FAQ Section -->
+<div class="container mt-5">
+    <div class="row mb-8">
+        <div class="col-md-12">
+            <h2>Frequently Asked Questions</h2>
+            <p>Have questions? Here are some answers to help you get started. If you need more information, our doctor consultant is just a WhatsApp message away!</p>
+        </div>
+    </div>
+
+    <!-- FAQ Accordion Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="accordion" id="faqAccordion">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What does the skin assessment include?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our skin assessment evaluates your skin type, condition, and specific concerns. Based on this assessment, we recommend tailored products to help you achieve healthier, glowing skin.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How do I complete the skin assessment?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Simply visit our skin assessment page and answer a few quick questions about your skin concerns and goals. The process is quick, easy, and completely online.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Will the recommended products suit my skin type?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, our product recommendations are based on your specific skin type and concerns. We ensure that all suggestions are suitable for your individual needs.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            How can I reach a doctor for further consultation?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            You can contact our doctor consultant directly through WhatsApp by clicking the WhatsApp icon located on the bottom corner of the webpage. They’ll provide expert guidance for your concerns.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Can I rely solely on the product recommendations for my skincare?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, our recommendations are designed to address your specific skin needs. However, for complex concerns or medical issues, we recommend consulting the doctor via WhatsApp for more in-depth advice.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 6 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            What if I have more questions after the assessment?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            No problem at all! You can reach out to our doctor consultant via WhatsApp anytime for follow-up questions or further advice. We're here to help.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}

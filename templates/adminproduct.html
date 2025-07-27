@@ -1,0 +1,50 @@
+{% extends "adminbase.html" %}
+
+{% block title %}Manage Products{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Manage Products</h1>
+
+    <!-- Add Product Button -->
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ url_for('add_product') }}" class="btn btn-success">+ Add Product</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Brand</th>
+                <th>Rating</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.product_id }}</td>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.product_description }}</td>
+                <td>{{ product.product_type }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.rating }}</td>
+                <td><img src="{{ url_for('static', filename='img/product/' + product.image) }}" alt="{{ product.product_name }}" style="width: 50px;"></td>
+                <td>
+                    <a href="{{ url_for('edit_product', product_id=product.product_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <form action="{{ url_for('delete_product', product_id=product.product_id) }}" method="POST" style="display:inline-block;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

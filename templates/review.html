@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">What Our Clients Are Saying</h2>
+
+    <p class="text-center mb-5">
+        We value our clients' feedback and strive to provide the best skincare services. Here's what they have to say:
+    </p>
+
+    <!-- Review Section -->
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Review #{{ review.review_id }}</h5>
+                    <p class="card-text">
+                        <em>"{{ review.review_text }}"</em>
+                    </p>
+                    <p class="text-muted">
+                        <strong>Rating:</strong> {{ review.rating }}/5<br>
+                        <strong>Date:</strong> {{ review.review_date.strftime('%B %d, %Y') }}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Add Review Button -->
+    <div class="text-center mt-4">
+        <button id="openModalBtn" class="btn btn-primary">Add a Review</button>
+    </div>
+</div>
+
+<!-- Modal for Adding a Review -->
+<div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addReviewModalLabel">Add Your Review</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('add_review') }}">
+                    <div class="mb-3">
+                        <label for="product_id" class="form-label">Product</label>
+                        <select class="form-select" id="product_id" name="product_id" required>
+                            {% for product in products %}
+                            <option value="{{ product.product_id }}">{{ product.product_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" step="0.1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="review_text" class="form-label">Review</label>
+                        <textarea class="form-control" id="review_text" name="review_text" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap & JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('openModalBtn').addEventListener('click', function () {
+    var reviewModal = new bootstrap.Modal(document.getElementById('addReviewModal'));
+    reviewModal.show();
+});
+</script>
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .card-text {
+        font-size: 1rem;
+        color: #555;
+    }
+    .text-muted {
+        font-size: 0.9rem;
+        color: #777;
+    }
+</style>
+{% endblock %}

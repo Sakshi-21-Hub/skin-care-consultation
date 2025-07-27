@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}Assessment{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skincare Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .images-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .images-container img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+        }
+
+        .images-container img:hover {
+            border-color: #4CAF50;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Skincare Assessment</h2>
+        <p>Take our quick survey to get personalized skincare recommendations!</p>
+        <form method="POST" action="/submit_assessment">
+
+            <!-- Skin Texture -->
+            <div class="form-group">
+                <label for="skin_texture">Skin Texture:</label>
+                <div class="images-container">
+                    <img src="{{ url_for('static', filename='img/oily.png') }}" alt="Oily Skin" title="Oily Skin">
+                    <img src="{{ url_for('static', filename='img/dry.jpeg') }}" alt="Dry Skin" title="Dry Skin">
+                    <img src="{{ url_for('static', filename='img/combination.png') }}" alt="Combination Skin" title="Combination Skin">
+                </div>
+                <select name="skin_texture" required>
+                    <option value="Oily">Oily</option>
+                    <option value="Dry">Dry</option>
+                    <option value="Combination">Combination</option>
+                </select>
+            </div>
+
+            <!-- Skin Type -->
+            <div class="form-group">
+                <label for="skin_type">Skin Type:</label>
+                <div class="images-container">
+                    <img src="{{ url_for('static', filename='img/normal.jpg') }}" alt="Normal Skin" title="Normal Skin">
+                    <img src="{{ url_for('static', filename='img/sensitive.webp') }}" alt="Sensitive Skin" title="Sensitive Skin">
+                </div>
+                <select name="skin_type" required>
+                    <option value="Normal">Normal</option>
+                    <option value="Sensitive">Sensitive</option>
+                </select>
+            </div>
+
+            <!-- Skin Condition -->
+            <div class="form-group">
+                <label for="skin_condition">Skin Condition:</label>
+                <div class="images-container">
+                    <img src="{{ url_for('static', filename='img/acne.jpg') }}" alt="Acne" title="Acne">
+                    <img src="{{ url_for('static', filename='img/open_pores.jpg') }}" alt="Open Pores" title="Open Pores">
+                    <img src="{{ url_for('static', filename='img/pigmentation.jpg') }}" alt="Pigmentation" title="Pigmentation">
+                    <img src="{{ url_for('static', filename='img/aging.jpg') }}" alt="Aging" title="Aging">
+                </div>
+                <select name="skin_condition" required>
+                    <option value="Acne">Acne</option>
+                    <option value="Open Pores">Open Pores</option>
+                    <option value="Pigmentation">Pigmentation</option>
+                    <option value="Aging">Aging</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Assessment</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+    <!-- Assessment form here -->
+{% endblock %}
