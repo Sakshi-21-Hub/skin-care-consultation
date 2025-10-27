@@ -75,61 +75,35 @@ Then open in your browser:
 
 http://localhost:8000
 
-###🧠 How It Works
+🧠 How It Works
 ---
-The user signs up and logs in.
+- The user signs up and logs in.
 
-The skin assessment form captures:
+- The skin assessment form captures: Skin texture,Skin type,Skin condition
 
-Skin texture
+- The system uses TF-IDF vectorization and weighted scores (rating + price) to recommend top skincare products.
 
-Skin type
+- Results are stored in the skin_assessments table and displayed to the user.
 
-Skin condition
-
-The system uses TF-IDF vectorization and weighted scores (rating + price) to recommend top skincare products.
-
-Results are stored in the skin_assessments table and displayed to the user.
-
-### 📁 Folder Structure
+💡 Future Enhancements
 ---
-skin-care-consultation/
-│
-├── app.py                  # Main Flask application
-├── db.sql                  # Database schema
-├── requirements.txt         # Python dependencies
-├── README.md               # Project documentation
-│
-├── static/
-│   └── img/product/         # Product images
-│
-├── templates/
-│   ├── login.html
-│   ├── signup.html
-│   ├── dashboard.html
-│   ├── admindash.html
-│   ├── adminproduct.html
-│   ├── review.html
-│   ├── assessment.html
-│   ├── assessment_results.html
-│   └── ...
-│
-└── dashboard-rough.py       # Experimental dashboard logic
+- AI-based image analysis for skin condition detection
 
-###💡 Future Enhancements
+- Email notifications for new recommendations
+
+- Admin analytics dashboard (review and user activity insights)
+
+- User profile management
+
+🧑‍💻 Author
 ---
-AI-based image analysis for skin condition detection
+Developed by Sakshi Khanvilkar
 
-Email notifications for new recommendations
-
-Admin analytics dashboard (review and user activity insights)
-
-User profile management
-
-###🧑‍💻 Author
----
-📘 GitHub: https://github.com/Sakshi-21-Hub
-
-###🪪 License
+🪪 License
 ---
 This project is licensed under the MIT License.
+
+## Acknowledgments
+
+Thanks to all contributors who have helped with the development
+
