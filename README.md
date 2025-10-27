@@ -22,20 +22,41 @@ It also includes **admin management**, **product management**, and **review mode
 
 ---
 
-## 🗃️ Database
+### 3. Database Setup (Using XAMPP)
 
-The app uses **MySQL** as the database.  
-Create a database named `skincare` and import the provided SQL file:
+**Install XAMPP**  
+- Download from [https://www.apachefriends.org/download.html](https://www.apachefriends.org/download.html)  
+- Install on your local machine.
 
-```bash
-mysql -u root -p skincare < db.sql
-| Component         | Technology Used                            |
-| ----------------- | ------------------------------------------ |
-| Backend Framework | Flask (Python)                             |
-| Database          | MySQL                                      |
-| Frontend          | HTML, CSS, Jinja Templates                 |
-| ML Component      | scikit-learn (TF-IDF + cosine similarity)  |
-| Libraries         | pandas, sklearn, mysql-connector, werkzeug |
+**Start Apache and MySQL**  
+- Open the XAMPP Control Panel and start **Apache** and **MySQL**.
+
+**Open phpMyAdmin**  
+- Go to [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
+
+**Create Database**  
+- Click **New**.  
+- Enter database name: `skincare`  
+- Click **Create**.
+
+**Import `db.sql` File**  
+- Select the `skincare` database.  
+- Go to the **Import** tab.  
+- Upload the `db.sql` file from the repository.  
+- Click **Go** to import tables and data.
+
+**Database Connection**  
+The app uses the following connection details:
+
+```python
+import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",  # default for XAMPP
+    database="skincare"
+)
 ```
 
 ### ⚙️ Installation Guide
